@@ -365,3 +365,156 @@ footer {
 
 /* Body background colour — only affects the gaps between sections */
 body { background: var(--dark); }
+
+/* ─── 3D STACKED SCROLL ─── */
+.stacked-scroll-section {
+  position: relative;
+  /* 3 cards × 100vh each + header space */
+  height: calc(300vh + 200px);
+  background: var(--dark);
+}
+
+.sstack-header {
+  padding: 100px 88px 64px;
+  position: relative;
+  z-index: 1;
+}
+.sstack-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 3vw, 48px);
+  font-weight: 300;
+  color: #fff;
+  margin-top: 12px;
+}
+.sstack-header h2 em { font-style: italic; color: var(--gold2); }
+.sstack-header .lbl { color: rgba(184,151,126,0.7); }
+
+/* Sticky container — holds all cards in viewport */
+.sstack-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Individual cards */
+.scard {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+  opacity: 0;
+  transform-origin: center top;
+  transform-style: preserve-3d;
+}
+
+.scard-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.scard-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(18,13,10,0.88) 0%,
+    rgba(18,13,10,0.3) 55%,
+    rgba(18,13,10,0.1) 100%
+  );
+}
+
+.scard-body {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 64px 88px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  z-index: 2;
+}
+
+.scard-left { max-width: 560px; }
+
+.scard-tag {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.scard-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 4.5vw, 64px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.02;
+  margin-bottom: 20px;
+}
+
+.scard-desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.scard-specs {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.scard-specs span {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  padding-right: 16px;
+  margin-right: 16px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.scard-specs span:last-child { border-right: none; }
+
+.scard-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.scard-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.scard-price em {
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold2);
+}
+.scard-counter {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* prop-cta works on dark too */
+.scard .prop-cta { color: rgba(255,255,255,0.8) !important; }
+.scard .prop-cta::after { background: var(--gold) !important; }
+
+/* Mobile */
+@media (max-width: 960px) {
+  .stacked-scroll-section { height: calc(300vh + 120px); }
+  .sstack-header { padding: 72px 28px 48px; }
+  .scard-body { padding: 32px 24px; flex-direction: column; gap: 24px; }
+  .scard-right { text-align: left; }
+  .scard-name { font-size: clamp(32px, 8vw, 48px); }
+}
