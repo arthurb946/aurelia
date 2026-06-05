@@ -923,32 +923,70 @@ body { background: var(--dark); }
 }
 
 /* ─── ROTATION BUTTON HOVER ─── */
+/*
+  Structure:
+  <a class="rot-btn btn-X">        ← sets bg, border, padding
+    <span class="rot-btn-inner">   ← perspective container, sized by content
+      <span class="rot-arm rot-arm-default">Text</span>  ← in flow, sizes parent
+      <span class="rot-arm rot-arm-fill"></span>          ← absolute overlay
+      <span class="rot-arm rot-arm-hover">Text</span>    ← absolute overlay
+    </span>
+  </a>
+*/
+
 .rot-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  /* perspective on the element itself, not parent */
+  overflow: hidden;
 }
 
-/* Inner wrapper carries the 3D transform context */
 .rot-btn-inner {
-  position: relative;
   display: block;
-  transform-style: preserve-3d;
-  perspective: 500px;
-  /* height matches the tallest arm so button doesn't collapse */
-  height: 1.2em;
-  line-height: 1.2em;
+  position: relative;
+  perspective: 600px;
 }
 
-/* All arms share absolute positioning inside the inner */
-.rot-arm {
+/* Default arm: in normal flow → sizes the button naturally */
+.rot-arm-default {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  white-space: nowrap;
+  transform: rotateX(0deg);
+  opacity: 1;
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease;
+}
+.rot-btn:hover .rot-arm-default {
+  transform: rotateX(22deg);
+  opacity: 0;
+}
+
+/* Fill arm: absolute, provides hover bg */
+.rot-arm-fill {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
+  display: block;
+  transform: rotateX(-16deg);
+  opacity: 0;
+  transition:
+    transform 0.46s cubic-bezier(0.34, 1.4, 0.64, 1) 0.04s,
+    opacity 0.25s ease 0.04s;
+}
+.rot-btn:hover .rot-arm-fill {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
+/* Hover arm: absolute, shows hover label */
+.rot-arm-hover {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -958,50 +996,18 @@ body { background: var(--dark); }
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   white-space: nowrap;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Default arm — visible, rotates up on hover */
-.rot-arm-default {
-  transform: rotateX(0deg);
-  opacity: 1;
-  transition:
-    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity   0.35s ease;
-}
-.rot-btn:hover .rot-arm-default {
-  transform: rotateX(25deg);
-  opacity: 0;
-}
-
-/* Fill arm — background highlight */
-.rot-arm-fill {
-  transform: rotateX(-18deg);
-  opacity: 0;
-  transition:
-    transform 0.48s cubic-bezier(0.34, 1.4, 0.64, 1) 0.04s,
-    opacity   0.28s ease 0.04s;
-}
-.rot-btn:hover .rot-arm-fill {
-  transform: rotateX(0deg);
-  opacity: 1;
-}
-
-/* Hover arm — rotates in from below */
-.rot-arm-hover {
-  transform: rotateX(-35deg);
+  transform: rotateX(-32deg);
   opacity: 0;
   transition:
     transform 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s,
-    opacity   0.32s ease 0.06s;
+    opacity 0.3s ease 0.06s;
 }
 .rot-btn:hover .rot-arm-hover {
   transform: rotateX(0deg);
   opacity: 1;
 }
 
-/* ── Colour variants ── */
+/* ── Variants ── */
 
 .rot-btn.btn-gold {
   background: var(--gold);
@@ -1027,7 +1033,7 @@ body { background: var(--dark); }
 .rot-btn.btn-wire-light .rot-arm-default,
 .rot-btn.btn-wire-light .rot-arm-hover { color: #fff; }
 .rot-btn.btn-wire-light .rot-arm-fill { background: rgba(255,255,255,0.1); }
-.rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.65); }
+.rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.6); }
 
 .rot-btn.btn-wire {
   border: 1px solid rgba(255,255,255,0.28);
@@ -1036,17 +1042,18 @@ body { background: var(--dark); }
 }
 .rot-btn.btn-wire .rot-arm-default,
 .rot-btn.btn-wire .rot-arm-hover { color: #fff; }
-.rot-btn.btn-wire .rot-arm-fill { background: rgba(255,255,255,0.12); }
-.rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.7); }
+.rot-btn.btn-wire .rot-arm-fill { background: rgba(255,255,255,0.1); }
+.rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.6); }
 
+/* Nav CTA */
 .nav-cta.rot-btn { padding: 11px 26px; }
 .nav-cta.rot-btn .rot-arm-default { color: rgba(255,255,255,0.82); }
 .nav-cta.rot-btn .rot-arm-hover { color: var(--cream); }
 nav.scrolled .nav-cta.rot-btn .rot-arm-default { color: var(--gold); }
-nav.scrolled .nav-cta.rot-btn .rot-arm-hover { color: var(--cream); }
 .nav-cta.rot-btn .rot-arm-fill { background: var(--gold); }
-.nav-cta.rot-btn:hover { background: transparent !important; border-color: var(--gold) !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  .rot-arm { transition: none !important; }
+  .rot-arm, .rot-arm-default, .rot-arm-fill, .rot-arm-hover {
+    transition: none !important;
+  }
 }
