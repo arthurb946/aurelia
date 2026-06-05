@@ -922,63 +922,35 @@ body { background: var(--dark); }
   margin-top: 20px;
 }
 
-/* ─── ROTATION BUTTON HOVER ─── */
+/* ─── BUTTON LIFT HOVER ─── */
 .rot-btn {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  /* NO overflow:hidden — it kills 3D child transforms */
+  overflow: hidden;
+  position: relative;
 }
 
+/* The inner holds two text layers — one visible, one waiting below */
 .rot-btn-inner {
   display: block;
   position: relative;
-  /* perspective HERE makes rotateX visible on direct children */
-  perspective: 500px;
-  transform-style: preserve-3d;
 }
 
-/* Default label — in flow so it sizes the button, animates up on hover */
-.rot-arm-default {
-  display: block;
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  white-space: nowrap;
-  transform: rotateX(0deg);
-  transform-origin: center center;
-  opacity: 1;
-  transition:
-    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.3s ease;
-}
-.rot-btn:hover .rot-arm-default {
-  transform: rotateX(22deg);
-  opacity: 0;
+/* Both arms sit in a vertical stack via flex column */
+.rot-btn-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
 }
 
-/* Fill — bg highlight rotating in */
-.rot-arm-fill {
-  position: absolute;
-  inset: 0;
-  transform: rotateX(-16deg);
-  transform-origin: center center;
-  opacity: 0;
-  transition:
-    transform 0.46s cubic-bezier(0.34, 1.4, 0.64, 1) 0.04s,
-    opacity 0.25s ease 0.04s;
-}
-.rot-btn:hover .rot-arm-fill {
-  transform: rotateX(0deg);
-  opacity: 1;
+/* On hover, the whole inner shifts up by 100% — default goes away, hover comes in */
+.rot-btn:hover .rot-btn-inner {
+  transform: translateY(-100%);
 }
 
-/* Hover label — rotates in from below */
+.rot-arm-default,
 .rot-arm-hover {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -988,63 +960,71 @@ body { background: var(--dark); }
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   white-space: nowrap;
-  transform: rotateX(-32deg);
-  transform-origin: center center;
-  opacity: 0;
-  transition:
-    transform 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s,
-    opacity 0.3s ease 0.06s;
+  flex-shrink: 0;
+  padding: inherit;
 }
-.rot-btn:hover .rot-arm-hover {
-  transform: rotateX(0deg);
-  opacity: 1;
-}
+
+/* Fill arm not used — remove it */
+.rot-arm-fill { display: none; }
 
 /* ── Variants ── */
 
 .rot-btn.btn-gold {
   background: var(--gold);
-  padding: 15px 38px;
+  padding: 0;
 }
 .rot-btn.btn-gold .rot-arm-default,
-.rot-btn.btn-gold .rot-arm-hover { color: var(--cream); }
-.rot-btn.btn-gold .rot-arm-fill { background: var(--gold2); }
+.rot-btn.btn-gold .rot-arm-hover {
+  color: var(--cream);
+  padding: 15px 38px;
+}
+.rot-btn.btn-gold .rot-arm-hover { background: var(--gold2); }
 
 .rot-btn.btn-cream {
   background: var(--cream);
-  padding: 17px 44px;
+  padding: 0;
 }
 .rot-btn.btn-cream .rot-arm-default,
-.rot-btn.btn-cream .rot-arm-hover { color: var(--ink); }
-.rot-btn.btn-cream .rot-arm-fill { background: var(--warm); }
+.rot-btn.btn-cream .rot-arm-hover {
+  color: var(--ink);
+  padding: 17px 44px;
+}
+.rot-btn.btn-cream .rot-arm-hover { background: var(--warm); }
 
 .rot-btn.btn-wire-light {
   border: 1px solid rgba(255,255,255,0.3);
-  padding: 17px 44px;
-  transition: border-color 0.25s ease;
+  padding: 0;
+  transition: border-color 0.3s ease;
 }
+.rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.7); }
 .rot-btn.btn-wire-light .rot-arm-default,
-.rot-btn.btn-wire-light .rot-arm-hover { color: #fff; }
-.rot-btn.btn-wire-light .rot-arm-fill { background: rgba(255,255,255,0.1); }
-.rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.6); }
+.rot-btn.btn-wire-light .rot-arm-hover {
+  color: #fff;
+  padding: 17px 44px;
+}
+.rot-btn.btn-wire-light .rot-arm-hover { background: rgba(255,255,255,0.08); }
 
 .rot-btn.btn-wire {
   border: 1px solid rgba(255,255,255,0.28);
-  padding: 15px 28px;
-  transition: border-color 0.25s ease;
+  padding: 0;
+  transition: border-color 0.3s ease;
 }
+.rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.7); }
 .rot-btn.btn-wire .rot-arm-default,
-.rot-btn.btn-wire .rot-arm-hover { color: #fff; }
-.rot-btn.btn-wire .rot-arm-fill { background: rgba(255,255,255,0.1); }
-.rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.6); }
+.rot-btn.btn-wire .rot-arm-hover {
+  color: #fff;
+  padding: 15px 28px;
+}
+.rot-btn.btn-wire .rot-arm-hover { background: rgba(255,255,255,0.08); }
 
 /* Nav CTA */
-.nav-cta.rot-btn { padding: 11px 26px; }
+.nav-cta.rot-btn { padding: 0; }
+.nav-cta.rot-btn .rot-arm-default,
+.nav-cta.rot-btn .rot-arm-hover { padding: 11px 26px; }
 .nav-cta.rot-btn .rot-arm-default { color: rgba(255,255,255,0.82); }
-.nav-cta.rot-btn .rot-arm-hover { color: var(--cream); }
+.nav-cta.rot-btn .rot-arm-hover { color: var(--cream); background: var(--gold); }
 nav.scrolled .nav-cta.rot-btn .rot-arm-default { color: var(--gold); }
-.nav-cta.rot-btn .rot-arm-fill { background: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
-  .rot-arm-default, .rot-arm-fill, .rot-arm-hover { transition: none !important; }
+  .rot-btn-inner { transition: none !important; }
 }
