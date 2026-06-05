@@ -928,10 +928,7 @@ body { background: var(--dark); }
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  position: relative;
 }
-
-/* Wrapper slides up on hover */
 .btn-wrap {
   display: flex;
   flex-direction: column;
@@ -940,8 +937,6 @@ body { background: var(--dark); }
 .rot-btn:hover .btn-wrap {
   transform: translateY(-50%);
 }
-
-/* Both text spans identical height */
 .btn-t {
   display: flex;
   align-items: center;
@@ -953,35 +948,33 @@ body { background: var(--dark); }
   font-weight: 400;
   white-space: nowrap;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
-/* Variants — padding on the spans so the button sizes correctly */
+/* Gold */
 .rot-btn.btn-gold { background: var(--gold); transition: background 0.3s ease; }
 .rot-btn.btn-gold:hover { background: var(--gold2); }
-.rot-btn.btn-gold .btn-t { color: var(--cream); padding: 15px 38px; }
+.rot-btn.btn-gold .btn-t { color: var(--cream); padding: 15px 38px; height: 50px; }
 
+/* Cream */
 .rot-btn.btn-cream { background: var(--cream); transition: background 0.3s ease; }
 .rot-btn.btn-cream:hover { background: var(--warm); }
-.rot-btn.btn-cream .btn-t { color: var(--ink); padding: 17px 44px; }
+.rot-btn.btn-cream .btn-t { color: var(--ink); padding: 17px 44px; height: 54px; }
 
-.rot-btn.btn-wire-light {
-  border: 1px solid rgba(255,255,255,0.3);
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
+/* Wire light */
+.rot-btn.btn-wire-light { border: 1px solid rgba(255,255,255,0.3); transition: border-color 0.3s ease, background 0.3s ease; }
 .rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
-.rot-btn.btn-wire-light .btn-t { color: #fff; padding: 17px 44px; }
+.rot-btn.btn-wire-light .btn-t { color: #fff; padding: 17px 44px; height: 54px; }
 
-.rot-btn.btn-wire {
-  border: 1px solid rgba(255,255,255,0.28);
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
+/* Wire */
+.rot-btn.btn-wire { border: 1px solid rgba(255,255,255,0.28); transition: border-color 0.3s ease, background 0.3s ease; }
 .rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
-.rot-btn.btn-wire .btn-t { color: #fff; padding: 15px 28px; }
+.rot-btn.btn-wire .btn-t { color: #fff; padding: 15px 28px; height: 46px; }
 
+/* Nav CTA */
 .nav-cta.rot-btn { transition: background 0.3s ease, border-color 0.3s ease; }
 .nav-cta.rot-btn:hover { background: var(--gold); border-color: var(--gold); }
-.nav-cta.rot-btn .btn-t { padding: 11px 26px; }
-.nav-cta.rot-btn .btn-t { color: rgba(255,255,255,0.82); }
+.nav-cta.rot-btn .btn-t { padding: 11px 26px; height: 42px; color: rgba(255,255,255,0.82); }
 nav.scrolled .nav-cta.rot-btn .btn-t { color: var(--gold); }
 nav.scrolled .nav-cta.rot-btn:hover .btn-t { color: var(--cream); }
 
