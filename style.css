@@ -369,13 +369,13 @@ body { background: var(--dark); }
 /* ─── 3D STACKED SCROLL ─── */
 .stacked-scroll-section {
   position: relative;
-  /* 3 cards × 100vh each + header space */
   height: calc(300vh + 200px);
-  background: var(--dark);
+  background: var(--cream);
+  padding: 0 88px;
 }
 
 .sstack-header {
-  padding: 100px 88px 64px;
+  padding: 100px 0 56px;
   position: relative;
   z-index: 1;
 }
@@ -383,21 +383,23 @@ body { background: var(--dark); }
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(34px, 3vw, 48px);
   font-weight: 300;
-  color: #fff;
+  color: var(--ink);
   margin-top: 12px;
 }
-.sstack-header h2 em { font-style: italic; color: var(--gold2); }
-.sstack-header .lbl { color: rgba(184,151,126,0.7); }
+.sstack-header h2 em { font-style: italic; color: var(--gold); }
+.sstack-header .lbl { color: var(--gold); }
 
-/* Sticky container — holds all cards in viewport */
+/* Sticky container */
 .sstack-sticky {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: 80px;
+  height: calc(100vh - 120px);
   overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 32px 80px rgba(18,13,10,0.22);
 }
 
-/* Individual cards */
+/* Individual cards — contained within the card shape */
 .scard {
   position: absolute;
   inset: 0;
@@ -405,6 +407,8 @@ body { background: var(--dark); }
   opacity: 0;
   transform-origin: center top;
   transform-style: preserve-3d;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .scard-img {
@@ -428,7 +432,7 @@ body { background: var(--dark); }
 .scard-body {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 64px 88px;
+  padding: 52px 56px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -436,7 +440,7 @@ body { background: var(--dark); }
   z-index: 2;
 }
 
-.scard-left { max-width: 560px; }
+.scard-left { max-width: 520px; }
 
 .scard-tag {
   font-size: 9px;
@@ -444,31 +448,31 @@ body { background: var(--dark); }
   text-transform: uppercase;
   color: var(--gold2);
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .scard-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(40px, 4.5vw, 64px);
+  font-size: clamp(36px, 3.8vw, 56px);
   font-weight: 300;
   color: #fff;
   line-height: 1.02;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .scard-desc {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.8;
   color: rgba(255,255,255,0.6);
-  margin-bottom: 24px;
-  max-width: 480px;
+  margin-bottom: 22px;
+  max-width: 420px;
 }
 
 .scard-specs {
   display: flex;
   gap: 0;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 .scard-specs span {
   font-size: 9.5px;
@@ -488,15 +492,15 @@ body { background: var(--dark); }
 
 .scard-price {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 300;
   color: #fff;
   line-height: 1;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .scard-price em {
   font-style: italic;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--gold2);
 }
 .scard-counter {
@@ -506,17 +510,17 @@ body { background: var(--dark); }
   color: rgba(255,255,255,0.3);
 }
 
-/* prop-cta works on dark too */
 .scard .prop-cta { color: rgba(255,255,255,0.8) !important; }
 .scard .prop-cta::after { background: var(--gold) !important; }
 
 /* Mobile */
 @media (max-width: 960px) {
-  .stacked-scroll-section { height: calc(300vh + 120px); }
-  .sstack-header { padding: 72px 28px 48px; }
-  .scard-body { padding: 32px 24px; flex-direction: column; gap: 24px; }
+  .stacked-scroll-section { height: calc(300vh + 120px); padding: 0 20px; }
+  .sstack-header { padding: 72px 0 40px; }
+  .sstack-sticky { top: 72px; height: calc(100vh - 100px); border-radius: 8px; }
+  .scard-body { padding: 28px 28px; flex-direction: column; gap: 20px; }
   .scard-right { text-align: left; }
-  .scard-name { font-size: clamp(32px, 8vw, 48px); }
+  .scard-name { font-size: clamp(30px, 7vw, 44px); }
 }
 
 /* ─── FLUID DESTINATION CARDS ─── */
