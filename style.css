@@ -928,7 +928,14 @@ body { background: var(--dark); }
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
+  position: relative;
 }
+/* Each variant clips to its single-label height */
+.rot-btn.btn-gold    { height: 50px; }
+.rot-btn.btn-cream   { height: 54px; }
+.rot-btn.btn-wire-light { height: 54px; }
+.rot-btn.btn-wire    { height: 46px; }
+.nav-cta.rot-btn     { height: 42px; }
 .btn-wrap {
   display: flex;
   flex-direction: column;
