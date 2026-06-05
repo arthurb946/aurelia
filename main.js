@@ -59,3 +59,14 @@ pills.forEach(pill => {
     propCards.forEach(c => c.classList.toggle('dimmed', f !== 'all' && c.dataset.r !== f));
   });
 });
+// Button roll effect
+document.querySelectorAll('.rot-btn').forEach(btn => {
+  const wrap = btn.querySelector('.btn-wrap');
+  if (!wrap) return;
+  btn.addEventListener('mouseenter', () => {
+    wrap.style.transform = 'translateY(-50%)';
+  });
+  btn.addEventListener('mouseleave', () => {
+    wrap.style.transform = 'translateY(0)';
+  });
+});
