@@ -923,31 +923,22 @@ body { background: var(--dark); }
 }
 
 /* ─── ROTATION BUTTON HOVER ─── */
-/*
-  Structure:
-  <a class="rot-btn btn-X">        ← sets bg, border, padding
-    <span class="rot-btn-inner">   ← perspective container, sized by content
-      <span class="rot-arm rot-arm-default">Text</span>  ← in flow, sizes parent
-      <span class="rot-arm rot-arm-fill"></span>          ← absolute overlay
-      <span class="rot-arm rot-arm-hover">Text</span>    ← absolute overlay
-    </span>
-  </a>
-*/
-
 .rot-btn {
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
-  overflow: hidden;
+  /* NO overflow:hidden — it kills 3D child transforms */
 }
 
 .rot-btn-inner {
   display: block;
   position: relative;
-  perspective: 600px;
+  /* perspective HERE makes rotateX visible on direct children */
+  perspective: 500px;
+  transform-style: preserve-3d;
 }
 
-/* Default arm: in normal flow → sizes the button naturally */
+/* Default label — in flow so it sizes the button, animates up on hover */
 .rot-arm-default {
   display: block;
   font-size: 10.5px;
@@ -957,6 +948,7 @@ body { background: var(--dark); }
   font-weight: 400;
   white-space: nowrap;
   transform: rotateX(0deg);
+  transform-origin: center center;
   opacity: 1;
   transition:
     transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -967,12 +959,12 @@ body { background: var(--dark); }
   opacity: 0;
 }
 
-/* Fill arm: absolute, provides hover bg */
+/* Fill — bg highlight rotating in */
 .rot-arm-fill {
   position: absolute;
   inset: 0;
-  display: block;
   transform: rotateX(-16deg);
+  transform-origin: center center;
   opacity: 0;
   transition:
     transform 0.46s cubic-bezier(0.34, 1.4, 0.64, 1) 0.04s,
@@ -983,7 +975,7 @@ body { background: var(--dark); }
   opacity: 1;
 }
 
-/* Hover arm: absolute, shows hover label */
+/* Hover label — rotates in from below */
 .rot-arm-hover {
   position: absolute;
   inset: 0;
@@ -997,6 +989,7 @@ body { background: var(--dark); }
   font-weight: 400;
   white-space: nowrap;
   transform: rotateX(-32deg);
+  transform-origin: center center;
   opacity: 0;
   transition:
     transform 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s,
@@ -1053,7 +1046,5 @@ nav.scrolled .nav-cta.rot-btn .rot-arm-default { color: var(--gold); }
 .nav-cta.rot-btn .rot-arm-fill { background: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
-  .rot-arm, .rot-arm-default, .rot-arm-fill, .rot-arm-hover {
-    transition: none !important;
-  }
+  .rot-arm-default, .rot-arm-fill, .rot-arm-hover { transition: none !important; }
 }
