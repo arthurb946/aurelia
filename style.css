@@ -922,25 +922,8 @@ body { background: var(--dark); }
   margin-top: 20px;
 }
 
-/* ─── CALYPSO BUTTON LIFT EFFECT ─── */
-/* Text flies up and out, then re-enters from below — Codrops calypso style */
-
-@keyframes calypsoUp {
-  to {
-    transform: translate3d(0, -105%, 0) scale3d(1, 1.8, 1);
-    opacity: 0;
-  }
-}
-@keyframes calypsoIn {
-  from {
-    transform: translate3d(0, 100%, 0) scale3d(1, 1.8, 1);
-    opacity: 0;
-  }
-  to {
-    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-    opacity: 1;
-  }
-}
+/* ─── BUTTON ROLL EFFECT ─── */
+/* Text rolls up on mouseenter, rolls back down on mouseleave */
 
 .rot-btn {
   display: inline-block;
@@ -950,14 +933,15 @@ body { background: var(--dark); }
   position: relative;
 }
 
-/* Inner — just wraps the single span, no extra structure needed */
 .rot-btn-inner {
-  display: block;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-/* The visible label — flies out then back in on hover */
-.rot-arm-default {
+/* Two identical labels stacked — first visible, second waiting below */
+.rot-arm-default,
+.rot-arm-hover {
   display: block;
   font-size: 10.5px;
   letter-spacing: 0.2em;
@@ -965,70 +949,66 @@ body { background: var(--dark); }
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   white-space: nowrap;
-  position: relative;
-  z-index: 2;
-}
-.rot-btn:hover .rot-arm-default {
-  animation: calypsoUp 0.3s cubic-bezier(0.4, 0, 1, 1) forwards,
-             calypsoIn 0.3s cubic-bezier(0, 0, 0.2, 1) 0.3s forwards;
+  flex-shrink: 0;
+  text-align: center;
 }
 
-/* Fill + hover arms not needed for this effect */
+/* On hover: slide both up — default exits top, hover enters from below */
+.rot-btn:hover .rot-btn-inner,
+.rot-btn.rolling .rot-btn-inner {
+  transform: translateY(-50%);
+}
+
+/* Unused */
 .rot-arm-fill,
-.rot-arm-hover,
 .rot-arm-sizer { display: none !important; }
 
 /* ── Variants ── */
 .rot-btn.btn-gold {
   background: var(--gold);
-  padding: 15px 38px;
   transition: background 0.3s ease;
 }
 .rot-btn.btn-gold:hover { background: var(--gold2); }
-.rot-btn.btn-gold .rot-arm-default { color: var(--cream); }
+.rot-btn.btn-gold .rot-arm-default,
+.rot-btn.btn-gold .rot-arm-hover { color: var(--cream); padding: 15px 38px; }
 
 .rot-btn.btn-cream {
   background: var(--cream);
-  padding: 17px 44px;
   transition: background 0.3s ease;
 }
 .rot-btn.btn-cream:hover { background: var(--warm); }
-.rot-btn.btn-cream .rot-arm-default { color: var(--ink); }
+.rot-btn.btn-cream .rot-arm-default,
+.rot-btn.btn-cream .rot-arm-hover { color: var(--ink); padding: 17px 44px; }
 
 .rot-btn.btn-wire-light {
   border: 1px solid rgba(255,255,255,0.3);
-  padding: 17px 44px;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
-.rot-btn.btn-wire-light:hover {
-  border-color: rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.06);
-}
-.rot-btn.btn-wire-light .rot-arm-default { color: #fff; }
+.rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+.rot-btn.btn-wire-light .rot-arm-default,
+.rot-btn.btn-wire-light .rot-arm-hover { color: #fff; padding: 17px 44px; }
 
 .rot-btn.btn-wire {
   border: 1px solid rgba(255,255,255,0.28);
-  padding: 15px 28px;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
-.rot-btn.btn-wire:hover {
-  border-color: rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.06);
-}
-.rot-btn.btn-wire .rot-arm-default { color: #fff; }
+.rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+.rot-btn.btn-wire .rot-arm-default,
+.rot-btn.btn-wire .rot-arm-hover { color: #fff; padding: 15px 28px; }
 
-/* Nav CTA */
 .nav-cta.rot-btn {
-  padding: 11px 26px;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 .nav-cta.rot-btn:hover { background: var(--gold); border-color: var(--gold); }
+.nav-cta.rot-btn .rot-arm-default,
+.nav-cta.rot-btn .rot-arm-hover { padding: 11px 26px; }
 .nav-cta.rot-btn .rot-arm-default { color: rgba(255,255,255,0.82); }
+.nav-cta.rot-btn .rot-arm-hover { color: var(--cream); }
 nav.scrolled .nav-cta.rot-btn .rot-arm-default { color: var(--gold); }
 nav.scrolled .nav-cta.rot-btn:hover .rot-arm-default { color: var(--cream); }
 
 @media (prefers-reduced-motion: reduce) {
-  .rot-btn:hover .rot-arm-default { animation: none; }
+  .rot-btn-inner { transition: none !important; }
 }, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --cream: #faf7f2;
