@@ -913,3 +913,11 @@ body { background: var(--dark); }
   .at-slide { position: relative; top: auto; left: auto; right: auto; }
   .at-slide:not(.active) { display: none; }
 }
+
+.at-header-sub {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 480px;
+  margin-top: 20px;
+}
