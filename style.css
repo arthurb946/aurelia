@@ -931,26 +931,18 @@ body { background: var(--dark); }
   position: relative;
 }
 
-.btn-label {
-  display: block;
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  white-space: nowrap;
-  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+/* Wrapper slides up on hover */
+.btn-wrap {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.rot-btn:hover .btn-wrap {
+  transform: translateY(-50%);
 }
 
-.rot-btn:hover .btn-label {
-  transform: translateY(-100%);
-}
-
-/* Ghost label that appears from below on hover */
-.rot-btn::after {
-  content: attr(data-label);
-  position: absolute;
-  inset: 0;
+/* Both text spans identical height */
+.btn-t {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -959,62 +951,42 @@ body { background: var(--dark); }
   text-transform: uppercase;
   font-family: 'Jost', sans-serif;
   font-weight: 400;
-  transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.rot-btn:hover::after {
-  transform: translateY(0);
-}
-
-/* Variants */
-.rot-btn.btn-gold {
-  background: var(--gold);
-  padding: 15px 38px;
-  transition: background 0.3s ease;
-}
+/* Variants — padding on the spans so the button sizes correctly */
+.rot-btn.btn-gold { background: var(--gold); transition: background 0.3s ease; }
 .rot-btn.btn-gold:hover { background: var(--gold2); }
-.rot-btn.btn-gold .btn-label { color: var(--cream); }
-.rot-btn.btn-gold::after { color: var(--cream); }
+.rot-btn.btn-gold .btn-t { color: var(--cream); padding: 15px 38px; }
 
-.rot-btn.btn-cream {
-  background: var(--cream);
-  padding: 17px 44px;
-  transition: background 0.3s ease;
-}
+.rot-btn.btn-cream { background: var(--cream); transition: background 0.3s ease; }
 .rot-btn.btn-cream:hover { background: var(--warm); }
-.rot-btn.btn-cream .btn-label { color: var(--ink); }
-.rot-btn.btn-cream::after { color: var(--ink); }
+.rot-btn.btn-cream .btn-t { color: var(--ink); padding: 17px 44px; }
 
 .rot-btn.btn-wire-light {
   border: 1px solid rgba(255,255,255,0.3);
-  padding: 17px 44px;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 .rot-btn.btn-wire-light:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
-.rot-btn.btn-wire-light .btn-label { color: #fff; }
-.rot-btn.btn-wire-light::after { color: #fff; }
+.rot-btn.btn-wire-light .btn-t { color: #fff; padding: 17px 44px; }
 
 .rot-btn.btn-wire {
   border: 1px solid rgba(255,255,255,0.28);
-  padding: 15px 28px;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 .rot-btn.btn-wire:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
-.rot-btn.btn-wire .btn-label { color: #fff; }
-.rot-btn.btn-wire::after { color: #fff; }
+.rot-btn.btn-wire .btn-t { color: #fff; padding: 15px 28px; }
 
-.nav-cta.rot-btn {
-  padding: 11px 26px;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
+.nav-cta.rot-btn { transition: background 0.3s ease, border-color 0.3s ease; }
 .nav-cta.rot-btn:hover { background: var(--gold); border-color: var(--gold); }
-.nav-cta.rot-btn .btn-label { color: rgba(255,255,255,0.82); }
-.nav-cta.rot-btn::after { color: var(--cream); }
-nav.scrolled .nav-cta.rot-btn .btn-label { color: var(--gold); }
+.nav-cta.rot-btn .btn-t { padding: 11px 26px; }
+.nav-cta.rot-btn .btn-t { color: rgba(255,255,255,0.82); }
+nav.scrolled .nav-cta.rot-btn .btn-t { color: var(--gold); }
+nav.scrolled .nav-cta.rot-btn:hover .btn-t { color: var(--cream); }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-label, .rot-btn::after { transition: none !important; }
+  .btn-wrap { transition: none !important; }
 }, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --cream: #faf7f2;
