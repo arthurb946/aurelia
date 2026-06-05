@@ -61,6 +61,11 @@ pills.forEach(pill => {
 });
 // Button roll effect
 document.querySelectorAll('.rot-btn').forEach(btn => {
+  // Set button height to exactly one label height so overflow clips correctly
+  const firstSpan = btn.querySelector('.btn-t');
+  if (firstSpan) {
+    btn.style.height = firstSpan.offsetHeight + 'px';
+  }
   const wrap = btn.querySelector('.btn-wrap');
   if (!wrap) return;
   btn.addEventListener('mouseenter', () => {
