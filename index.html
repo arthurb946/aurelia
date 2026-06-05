@@ -68,73 +68,84 @@
 </div>
 
 <!-- PROPERTIES -->
-<section class="properties-section" data-bg="light" id="villas">
-  <div class="prop-header rev">
-    <div>
-      <span class="lbl">/ collection</span>
-      <h2>Three destinations.<br><em>One standard of beauty.</em></h2>
-    </div>
-    <div class="prop-header-right">
-      <p>Drag to explore each property — or filter by destination.</p>
-      <div class="filter-pills">
-        <button class="pill active" data-f="all">All</button>
-        <button class="pill" data-f="italy">Italy</button>
-        <button class="pill" data-f="france">France</button>
+<section class="stacked-scroll-section" id="stackedScroll" data-bg="light">
 
-      </div>
-    </div>
+  <div class="sstack-header rev">
+    <span class="lbl">/ collection</span>
+    <h2>Three destinations.<br><em>One standard of beauty.</em></h2>
   </div>
 
-  <div class="h-scroll-track" id="propTrack">
+  <!-- Sticky viewport -->
+  <div class="sstack-sticky">
 
-    <div class="prop-card" data-r="italy">
-      <div class="prop-img">
-        <div class="prop-img-bg" style="background-image:url('villa-amalfi.jpg')"></div>
-        <span class="prop-tag">/ Amalfi Coast · Italy</span>
-      </div>
-      <div class="prop-body">
-        <div class="prop-meta-row"><span class="prop-type">Villa</span><span class="prop-price">From £11,500 / week</span></div>
-        <h3 class="prop-name">Villa Serena</h3>
-        <p class="prop-desc">Terraced above the Tyrrhenian Sea with uninterrupted views from every room. Stone-built, vine-covered, utterly still.</p>
-        <div class="prop-specs"><span>4 bedrooms</span><span>Infinity pool</span><span>Sea terrace</span></div>
-        <a href="#contact" class="prop-cta">Enquire about this villa</a>
+    <div class="scard" id="scard0">
+      <div class="scard-img" style="background-image:url('villa-amalfi.jpg')"></div>
+      <div class="scard-overlay"></div>
+      <div class="scard-body">
+        <div class="scard-left">
+          <span class="scard-tag">/ Amalfi Coast · Italy</span>
+          <h3 class="scard-name">Villa Serena</h3>
+          <p class="scard-desc">Terraced above the Tyrrhenian Sea with uninterrupted views from every room. Stone-built, vine-covered, utterly still.</p>
+          <div class="scard-specs">
+            <span>4 bedrooms</span>
+            <span>Infinity pool</span>
+            <span>Sea terrace</span>
+          </div>
+          <a href="#contact" class="prop-cta">Enquire about this villa</a>
+        </div>
+        <div class="scard-right">
+          <div class="scard-price">From £11,500 <em>/ week</em></div>
+          <div class="scard-counter">01 / 03</div>
+        </div>
       </div>
     </div>
 
-    <div class="prop-card" data-r="italy">
-      <div class="prop-img">
-        <div class="prop-img-bg" style="background-image:url('villa-tuscany.jpg')"></div>
-        <span class="prop-tag">/ Tuscany · Italy</span>
-      </div>
-      <div class="prop-body">
-        <div class="prop-meta-row"><span class="prop-type">Villa</span><span class="prop-price">From £9,200 / week</span></div>
-        <h3 class="prop-name">Villa La Quercia</h3>
-        <p class="prop-desc">A restored farmhouse amid rolling vineyards and cypress avenues. Golden stone, ancient beams, and a kitchen built for long evenings.</p>
-        <div class="prop-specs"><span>6 bedrooms</span><span>Vineyard views</span><span>Private pool</span></div>
-        <a href="#contact" class="prop-cta">Enquire about this villa</a>
-      </div>
-    </div>
-
-    <div class="prop-card" data-r="france">
-      <div class="prop-img">
-        <div class="prop-img-bg" style="background-image:url('villa-france.jpg')"></div>
-        <span class="prop-tag">/ Provence · France</span>
-      </div>
-      <div class="prop-body">
-        <div class="prop-meta-row"><span class="prop-type">Mas</span><span class="prop-price">From £7,800 / week</span></div>
-        <h3 class="prop-name">Mas des Lavandes</h3>
-        <p class="prop-desc">A 17th-century Provençal mas set in five acres of lavender. The kind of place that slows time to the pace of the afternoon light.</p>
-        <div class="prop-specs"><span>4 bedrooms</span><span>Lavender gardens</span><span>Stone pool terrace</span></div>
-        <a href="#contact" class="prop-cta">Enquire about this villa</a>
+    <div class="scard" id="scard1">
+      <div class="scard-img" style="background-image:url('villa-tuscany.jpg')"></div>
+      <div class="scard-overlay"></div>
+      <div class="scard-body">
+        <div class="scard-left">
+          <span class="scard-tag">/ Tuscany · Italy</span>
+          <h3 class="scard-name">Villa La Quercia</h3>
+          <p class="scard-desc">A restored farmhouse amid rolling vineyards and cypress avenues. Golden stone, ancient beams, and a kitchen built for long evenings.</p>
+          <div class="scard-specs">
+            <span>6 bedrooms</span>
+            <span>Vineyard views</span>
+            <span>Private pool</span>
+          </div>
+          <a href="#contact" class="prop-cta">Enquire about this villa</a>
+        </div>
+        <div class="scard-right">
+          <div class="scard-price">From £9,200 <em>/ week</em></div>
+          <div class="scard-counter">02 / 03</div>
+        </div>
       </div>
     </div>
 
+    <div class="scard" id="scard2">
+      <div class="scard-img" style="background-image:url('villa-france.jpg')"></div>
+      <div class="scard-overlay"></div>
+      <div class="scard-body">
+        <div class="scard-left">
+          <span class="scard-tag">/ Provence · France</span>
+          <h3 class="scard-name">Mas des Lavandes</h3>
+          <p class="scard-desc">A 17th-century Provençal mas set in five acres of lavender. The kind of place that slows time to the pace of the afternoon light.</p>
+          <div class="scard-specs">
+            <span>4 bedrooms</span>
+            <span>Lavender gardens</span>
+            <span>Stone pool terrace</span>
+          </div>
+          <a href="#contact" class="prop-cta">Enquire about this villa</a>
+        </div>
+        <div class="scard-right">
+          <div class="scard-price">From £7,800 <em>/ week</em></div>
+          <div class="scard-counter">03 / 03</div>
+        </div>
+      </div>
+    </div>
 
-  </div>
-  <div class="scroll-hint rev">
-    <span>Drag to explore</span>
-    <div class="scroll-hint-track"><div class="scroll-hint-thumb"></div></div>
-  </div>
+  </div><!-- /sstack-sticky -->
+
 </section>
 
 <!-- LIFESTYLE STRIP -->
@@ -220,5 +231,6 @@
 </footer>
 
 <script src="main.js"></script>
+<script src="stacked-scroll.js"></script>
 </body>
 </html>
