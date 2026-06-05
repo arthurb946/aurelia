@@ -945,9 +945,8 @@ body { background: var(--dark); }
   transform: translateY(-50%);
 }
 .btn-t {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  text-align: center;
   font-size: 10.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
