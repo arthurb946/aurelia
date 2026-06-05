@@ -518,3 +518,218 @@ body { background: var(--dark); }
   .scard-right { text-align: left; }
   .scard-name { font-size: clamp(32px, 8vw, 48px); }
 }
+
+/* ─── FLUID DESTINATION CARDS ─── */
+.dest-cards-section {
+  background: var(--dark);
+  padding: 100px 0 0;
+  overflow: hidden;
+}
+.dc-header {
+  padding: 0 88px 64px;
+}
+.dc-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 3vw, 52px);
+  font-weight: 300;
+  color: #fff;
+  margin-top: 12px;
+}
+.dc-header .lbl { color: rgba(184,151,126,0.7); }
+
+/* Track — flex row */
+.dc-track {
+  display: flex;
+  height: 75vh;
+  min-height: 520px;
+  gap: 2px;
+  cursor: pointer;
+}
+
+/* Individual card */
+.dc-card {
+  position: relative;
+  overflow: hidden;
+  /* Default: equal thirds */
+  flex: 1;
+  transition: flex 0.7s cubic-bezier(0.77,0,0.18,1);
+}
+
+/* Hovered card expands */
+.dc-card.dc-open {
+  flex: 3.2;
+}
+
+/* Sibling shrink when any is open */
+.dc-track.has-open .dc-card:not(.dc-open) {
+  flex: 0.6;
+}
+
+/* Image */
+.dc-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+.dc-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s cubic-bezier(0.77,0,0.18,1), filter 0.5s ease;
+  filter: brightness(0.55) saturate(0.8);
+}
+.dc-card.dc-open .dc-img {
+  filter: brightness(0.45) saturate(1);
+  transform: scale(1.04);
+}
+.dc-img-coming {
+  background: linear-gradient(135deg, #1e1a17 0%, #2a2420 100%);
+}
+
+/* Dark gradient overlay */
+.dc-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(18,13,10,0.9) 0%,
+    rgba(18,13,10,0.3) 60%,
+    transparent 100%);
+  z-index: 1;
+}
+
+/* Collapsed state — vertical label */
+.dc-collapsed {
+  position: absolute;
+  bottom: 40px;
+  left: 28px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: opacity 0.35s ease;
+}
+.dc-card.dc-open .dc-collapsed {
+  opacity: 0;
+  pointer-events: none;
+}
+.dc-num {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold2);
+}
+.dc-name-v {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #fff;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  letter-spacing: 0.06em;
+}
+
+/* Expanded state */
+.dc-expanded {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px 44px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease 0.15s;
+}
+.dc-card.dc-open .dc-expanded {
+  opacity: 1;
+  pointer-events: auto;
+}
+.dc-exp-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 400px;
+}
+.dc-tag {
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold2);
+}
+.dc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.02;
+}
+.dc-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  max-width: 340px;
+}
+.dc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 12px 20px;
+  width: fit-content;
+  margin-top: 8px;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.dc-cta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.dc-cta svg { flex-shrink: 0; }
+.dc-count {
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-top: 4px;
+}
+.dc-coming { color: var(--gold2) !important; }
+
+/* Cursor parallax on image */
+.dc-card {
+  --mx: 0px;
+  --my: 0px;
+}
+
+/* Mobile */
+@media (max-width: 960px) {
+  .dc-track {
+    flex-direction: column;
+    height: auto;
+  }
+  .dc-card {
+    flex: none !important;
+    height: 280px;
+  }
+  .dc-card.dc-open {
+    height: 420px;
+  }
+  .dc-track.has-open .dc-card:not(.dc-open) {
+    height: 220px;
+  }
+  .dc-name-v {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 28px;
+  }
+  .dc-collapsed {
+    flex-direction: row;
+    align-items: center;
+  }
+  .dc-header { padding: 0 24px 48px; }
+}
