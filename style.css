@@ -62,7 +62,7 @@ nav.scrolled .nav-cta { color: var(--gold); border-color: var(--gold); }
 }
 .hero-poster {
   position: absolute; inset: 0;
-  background: url('assets/villa-pool.jpg') center/cover no-repeat;
+  background: url('villa-pool.jpg') center/cover no-repeat;
 }
 video.hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -123,7 +123,7 @@ h1.hero-hed em { font-style: italic; color: var(--gold2); }
 .text-link { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:14px; }
 .text-link::after { content:''; display:block; width:44px; height:1px; background:var(--gold); transition:width .35s; }
 .text-link:hover::after { width:68px; }
-.intro-img { background:url('assets/lifestyle-terrace.png') center/cover no-repeat; min-height:600px; }
+.intro-img { background:url('lifestyle-terrace.png') center/cover no-repeat; min-height:600px; }
 
 /* ─── STATS BAR ─── */
 .stats-bar { display:grid; grid-template-columns:repeat(4,1fr); background:var(--dark); border-top:1px solid rgba(184,151,126,.12); }
@@ -219,7 +219,7 @@ blockquote.phil-quote { font-family:'Cormorant Garamond',serif; font-size:clamp(
 blockquote.phil-quote em { font-style:normal; color:var(--gold2); }
 .phil-body { font-size:14px; line-height:2; color:rgba(255,255,255,.4); max-width:500px; }
 .gold-line { width:48px; height:1px; background:var(--gold); margin:44px 0 0; }
-.phil-img { aspect-ratio:4/5; background:url('assets/lifestyle-vineyard.png') center/cover; position:relative; }
+.phil-img { aspect-ratio:4/5; background:url('lifestyle-vineyard.png') center/cover; position:relative; }
 .phil-img::before { content:''; position:absolute; inset:-12px; border:1px solid rgba(184,151,126,.2); pointer-events:none; }
 
 /* ─── EXPERIENCE ─── */
@@ -251,7 +251,7 @@ blockquote.phil-quote em { font-style:normal; color:var(--gold2); }
 .dest-count { font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(122,110,101,.55); }
 
 /* ─── CTA ─── */
-.cta-wrap { padding:168px 88px; text-align:center; background:url('assets/lifestyle-pool.png') center/cover fixed no-repeat; position:relative; }
+.cta-wrap { padding:168px 88px; text-align:center; background:url('lifestyle-pool.png') center/cover fixed no-repeat; position:relative; }
 .cta-wrap::before { content:''; position:absolute; inset:0; background:rgba(18,13,10,.62); }
 .cta-inner { position:relative; z-index:1; }
 .cta-inner .lbl { color:var(--gold2); }
@@ -324,3 +324,44 @@ footer { background:var(--dark); padding:88px 88px 56px; border-top:1px solid rg
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ─── DARK BG TEXT COLOURS ─── */
+/* Sections on permanent dark bg — always light text */
+.stats-bar,
+.philosophy,
+footer {
+  --text: rgba(255,255,255,0.85);
+  --muted-text: rgba(255,255,255,0.4);
+}
+
+/* Body background transition affects sections with light text on them */
+/* When scrolling through dark zones, intro/exp text needs to stay readable */
+/* Solution: give light sections a solid background so they're always legible */
+.intro { background: var(--cream); }
+.properties-section { background: var(--cream); }
+.exp-section { background: var(--cream); }
+.dest-section { background: var(--warm); }
+
+/* Philosophy section — image fix */
+.phil-img {
+  min-height: 480px !important;
+  background: url('lifestyle-vineyard.png') center/cover no-repeat !important;
+}
+
+/* Fix: intro and exp sections always show dark text regardless of body bg */
+.intro-copy h2,
+.intro-copy p,
+.exp-item h3,
+.exp-item p,
+.exp-header h2 {
+  color: var(--ink) !important;
+}
+.intro-copy .lbl,
+.exp-num,
+.exp-section .lbl {
+  color: var(--gold) !important;
+}
+.text-link { color: var(--ink) !important; }
+
+/* Body background colour — only affects the gaps between sections */
+body { background: var(--dark); }
