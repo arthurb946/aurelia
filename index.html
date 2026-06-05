@@ -68,84 +68,83 @@
 </div>
 
 <!-- PROPERTIES -->
-<section class="stacked-scroll-section" id="stackedScroll" data-bg="light">
-
-  <div class="sstack-header rev">
+<section class="at-section" data-bg="light" id="stackedScroll">
+  <div class="at-header rev">
     <span class="lbl">/ collection</span>
     <h2>Three destinations.<br><em>One standard of beauty.</em></h2>
   </div>
 
-  <!-- Sticky viewport -->
-  <div class="sstack-sticky">
+  <div class="at-wrap">
 
-    <div class="scard" id="scard0">
-      <div class="scard-img" style="background-image:url('villa-amalfi.jpg')"></div>
-      <div class="scard-overlay"></div>
-      <div class="scard-body">
-        <div class="scard-left">
-          <span class="scard-tag">/ Amalfi Coast · Italy</span>
-          <h3 class="scard-name">Villa Serena</h3>
-          <p class="scard-desc">Terraced above the Tyrrhenian Sea with uninterrupted views from every room. Stone-built, vine-covered, utterly still.</p>
-          <div class="scard-specs">
-            <span>4 bedrooms</span>
-            <span>Infinity pool</span>
-            <span>Sea terrace</span>
-          </div>
-          <a href="#contact" class="prop-cta">Enquire about this villa</a>
-        </div>
-        <div class="scard-right">
-          <div class="scard-price">From £11,500 <em>/ week</em></div>
-          <div class="scard-counter">01 / 03</div>
-        </div>
+    <!-- Left: stacked images -->
+    <div class="at-images" id="atImages">
+      <div class="at-img-card" data-index="0">
+        <img src="villa-tuscany.jpg" alt="Tuscany">
+      </div>
+      <div class="at-img-card" data-index="1">
+        <img src="villa-france.jpg" alt="South of France">
+      </div>
+      <div class="at-img-card" data-index="2">
+        <img src="villa-greece.png" alt="Santorini">
       </div>
     </div>
 
-    <div class="scard" id="scard1">
-      <div class="scard-img" style="background-image:url('villa-tuscany.jpg')"></div>
-      <div class="scard-overlay"></div>
-      <div class="scard-body">
-        <div class="scard-left">
-          <span class="scard-tag">/ Tuscany · Italy</span>
-          <h3 class="scard-name">Villa La Quercia</h3>
-          <p class="scard-desc">A restored farmhouse amid rolling vineyards and cypress avenues. Golden stone, ancient beams, and a kitchen built for long evenings.</p>
-          <div class="scard-specs">
-            <span>6 bedrooms</span>
-            <span>Vineyard views</span>
-            <span>Private pool</span>
-          </div>
-          <a href="#contact" class="prop-cta">Enquire about this villa</a>
+    <!-- Right: text slides -->
+    <div class="at-text" id="atText">
+
+      <div class="at-slide active" data-index="0">
+        <span class="at-tag">/ Tuscany · Italy</span>
+        <h3 class="at-name">Villa La Quercia</h3>
+        <p class="at-desc">A restored farmhouse amid rolling vineyards and cypress avenues. Golden stone, ancient beams, and a kitchen built for long evenings under the Tuscan sky.</p>
+        <div class="at-specs">
+          <span>6 bedrooms</span>
+          <span>Vineyard views</span>
+          <span>From £9,200 / week</span>
         </div>
-        <div class="scard-right">
-          <div class="scard-price">From £9,200 <em>/ week</em></div>
-          <div class="scard-counter">02 / 03</div>
-        </div>
+        <a href="#contact" class="prop-cta">Enquire about this villa</a>
       </div>
-    </div>
 
-    <div class="scard" id="scard2">
-      <div class="scard-img" style="background-image:url('villa-france.jpg')"></div>
-      <div class="scard-overlay"></div>
-      <div class="scard-body">
-        <div class="scard-left">
-          <span class="scard-tag">/ Provence · France</span>
-          <h3 class="scard-name">Mas des Lavandes</h3>
-          <p class="scard-desc">A 17th-century Provençal mas set in five acres of lavender. The kind of place that slows time to the pace of the afternoon light.</p>
-          <div class="scard-specs">
-            <span>4 bedrooms</span>
-            <span>Lavender gardens</span>
-            <span>Stone pool terrace</span>
-          </div>
-          <a href="#contact" class="prop-cta">Enquire about this villa</a>
+      <div class="at-slide" data-index="1">
+        <span class="at-tag">/ Provence · France</span>
+        <h3 class="at-name">Mas des Lavandes</h3>
+        <p class="at-desc">A 17th-century Provençal mas set in five acres of lavender. The kind of place that slows time to the pace of the afternoon light and long, unhurried lunches.</p>
+        <div class="at-specs">
+          <span>4 bedrooms</span>
+          <span>Lavender gardens</span>
+          <span>From £7,800 / week</span>
         </div>
-        <div class="scard-right">
-          <div class="scard-price">From £7,800 <em>/ week</em></div>
-          <div class="scard-counter">03 / 03</div>
-        </div>
+        <a href="#contact" class="prop-cta">Enquire about this villa</a>
       </div>
+
+      <div class="at-slide" data-index="2">
+        <span class="at-tag">/ Santorini · Greece</span>
+        <h3 class="at-name">Villa Aegean</h3>
+        <p class="at-desc">Whitewashed clifftop villas above the caldera, plunge pools catching the last of the Aegean sun. Santorini at its most private — no crowds, no noise, just the view.</p>
+        <div class="at-specs">
+          <span>5 bedrooms</span>
+          <span>Caldera views</span>
+          <span>From £8,400 / week</span>
+        </div>
+        <a href="#contact" class="prop-cta">Enquire about this villa</a>
+      </div>
+
+      <!-- Nav dots + arrows -->
+      <div class="at-nav">
+        <button class="at-arrow at-prev" id="atPrev" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="at-dots" id="atDots">
+          <button class="at-dot active" data-i="0"></button>
+          <button class="at-dot" data-i="1"></button>
+          <button class="at-dot" data-i="2"></button>
+        </div>
+        <button class="at-arrow at-next" id="atNext" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
     </div>
-
-  </div><!-- /sstack-sticky -->
-
+  </div>
 </section>
 
 <!-- DESTINATION CARDS -->
