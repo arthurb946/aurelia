@@ -75,3 +75,63 @@ document.querySelectorAll('.rot-btn').forEach(btn => {
     wrap.style.transform = 'translateY(0)';
   });
 });
+
+// Count-up animation on stats bar
+function countUp(el, target, duration) {
+  let start = 0;
+  const startTime = performance.now();
+  function tick(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(ease * target);
+    el.textContent = current;
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(tick);
+}
+
+const statsObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    statsObs.unobserve(entry.target);
+
+    entry.target.querySelectorAll('.sbar-item').forEach(item => {
+      const numEl = item.querySelector('.n');
+      if (!numEl) return;
+
+      // Extract the numeric value and any suffix (em, %, +)
+      const raw = numEl.textContent.trim();
+      const numMatch = raw.match(/^(\d+)/);
+      if (!numMatch) return;
+
+      const target = parseInt(numMatch[1]);
+      // Find the suffix element (em tag inside .n)
+      const suffix = numEl.querySelector('em');
+      const suffixText = suffix ? suffix.outerHTML : '';
+
+      // Clear and animate
+      numEl.innerHTML = '0' + suffixText;
+      const numTextNode = numEl.childNodes[0];
+
+      let start = 0;
+      const duration = 1800;
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(ease * target);
+        numEl.innerHTML = current + suffixText;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  });
+}, { threshold: 0.4 });
+
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) statsObs.observe(statsBar);
