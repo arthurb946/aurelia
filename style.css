@@ -2052,5 +2052,5 @@ nav.scrolled .nav-cta.rot-btn .rot-arm-default { color: var(--gold); }
   filter: brightness(0.25) saturate(0.5);
 }
 .dc-track:hover .dc-card:hover .dc-img {
-  filter: brightness(0.5) saturate(1.1);
+  filter: brightness(0.75) saturate(1.1);
 }
