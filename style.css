@@ -2046,3 +2046,11 @@ nav.scrolled .nav-cta.rot-btn .rot-arm-default { color: var(--gold); }
   font-size: 10.5px;
   letter-spacing: 0.08em;
 }
+
+/* Dim siblings when a card is hovered */
+.dc-track:hover .dc-card:not(:hover) .dc-img {
+  filter: brightness(0.25) saturate(0.5);
+}
+.dc-track:hover .dc-card:hover .dc-img {
+  filter: brightness(0.5) saturate(1.1);
+}
